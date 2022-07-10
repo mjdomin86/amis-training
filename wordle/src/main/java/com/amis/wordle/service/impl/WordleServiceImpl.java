@@ -2,9 +2,11 @@ package com.amis.wordle.service.impl;
 
 import com.amis.wordle.client.WordApiClient;
 import com.amis.wordle.service.WordleService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile("dev")
 public class WordleServiceImpl implements WordleService {
 
     private final WordApiClient wordApiClient;
@@ -17,4 +19,5 @@ public class WordleServiceImpl implements WordleService {
     public String getRandomWord(int length) {
         return wordApiClient.getRandomByLength(length).getBody().getWord();
     }
+
 }

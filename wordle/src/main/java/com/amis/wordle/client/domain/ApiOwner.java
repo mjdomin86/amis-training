@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class ApiOwner {
-    public String author;
-    public String web;
-    public String instagram;
-    public String github;
-    public String linkedin;
-    public String twitter;
-    public String playstore;
-    public String discord;
+    private String author;
+    private String web;
+    private String instagram;
+    private String github;
+    private String linkedin;
+    private String twitter;
+    private String playstore;
+    private String discord;
 }
