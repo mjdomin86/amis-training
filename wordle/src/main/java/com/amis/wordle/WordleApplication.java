@@ -1,5 +1,7 @@
 package com.amis.wordle;
 
+import com.amis.wordle.data.Word;
+import com.amis.wordle.data.WordRepository;
 import com.amis.wordle.service.WordleService;
 import com.diogonunes.jcolor.Attribute;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,15 @@ public class WordleApplication implements CommandLineRunner {
     @Autowired
     WordleService wordleService;
 
+    @Autowired
+    WordRepository wordRepository;
+
     @Override
     public void run(String... args) throws Exception {
         int nOfTries=5;
         System.out.println(colorize("Iniciando el procesador cuántico...", GREEN_TEXT(), BLACK_BACK()));
         String word = wordleService.getRandomWord(5);
+        wordRepository.saveAndFlush(Word.builder().generatedWord(word).build());
         System.out.println(word);
         System.out.println(colorize("Adivina la palabra de " + word.length() + " letras:",  GREEN_TEXT(), BLACK_BACK() ));
 
