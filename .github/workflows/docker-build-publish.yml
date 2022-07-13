@@ -20,6 +20,22 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - name: Cache Maven packages
+        #This action allows caching dependencies and build outputs to improve workflow execution time.
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('./.github/../wordle/**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Run package
+        run: mvn package
+
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
