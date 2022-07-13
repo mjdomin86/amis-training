@@ -33,10 +33,12 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
+      - name: cd
+        run: cd ./.github/../wordle
+      - name: pwd
+        run: pwd ∫
       - name: Run package
-        run: |
-          echo "$PWD" \
-          mvn package
+        run: mvn package
 
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
